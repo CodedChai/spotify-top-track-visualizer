@@ -141,6 +141,7 @@ dependencies {
   implementation(libs.kotlin.logging)
 
   implementation(libs.retrofit)
+  implementation(libs.retrofit.serialization)
 
   when (applicationLogging) {
     Logging.NONE -> runtimeOnly(libs.slf4j.nop)

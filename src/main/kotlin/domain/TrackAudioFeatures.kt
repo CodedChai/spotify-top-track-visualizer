@@ -1,5 +1,8 @@
 package domain
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class TrackAudioFeatures(
   val acousticness: Float,
   val danceability: Float,
