@@ -1,0 +1,15 @@
+# Spotify OAuth Configuration
+# Get these values from https://developer.spotify.com/dashboard
+
+# Your Spotify App Client ID
+spotify.client.id=YOUR_CLIENT_ID_HERE
+
+# Your Spotify App Client Secret
+spotify.client.secret=YOUR_CLIENT_SECRET_HERE
+
+# OAuth Redirect URI (must match what's configured in your Spotify App settings)
+spotify.redirect.uri=http://127.0.0.1:8000/callback
+
+# Scopes required for your application (space-separated)
+spotify.scopes=user-top-read
+

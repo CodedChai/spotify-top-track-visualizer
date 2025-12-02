@@ -11,3 +11,7 @@ gui-parameters/
 ffmpegOutput.txt
 ShaderError.glsl
 
+# Spotify OAuth credentials and tokens
+spotify.properties
+spotify_token.json
+
