@@ -13,27 +13,27 @@ val applicationMainClass = "TemplateProgramKt"
 val orxFeatures = setOf<String>(
 //  "orx-axidraw",
 //  "orx-boofcv",
-    "orx-camera",
+  "orx-camera",
 //  "orx-chataigne",
-    "orx-color",
-    "orx-composition",
-    "orx-compositor",
+  "orx-color",
+  "orx-composition",
+  "orx-compositor",
 //  "orx-compute-graph",
 //  "orx-compute-graph-nodes",
-    "orx-delegate-magic",
+  "orx-delegate-magic",
 //  "orx-dnk3",
 //  "orx-easing",
-    "orx-envelopes",
+  "orx-envelopes",
 //  "orx-expression-evaluator",
 //  "orx-fcurve",
 //  "orx-fft",
 //  "orx-file-watcher",
-    "orx-fx",
+  "orx-fx",
 //  "orx-git-archiver",
 //  "orx-gradient-descent",
-    "orx-gui",
+  "orx-gui",
 //  "orx-hash-grid",
-    "orx-image-fit",
+  "orx-image-fit",
 //  "orx-integral-image",
 //  "orx-interval-tree",
 //  "orx-jumpflood",
@@ -46,13 +46,13 @@ val orxFeatures = setOf<String>(
 //  "orx-mesh-generators",
 //  "orx-midi",
 //  "orx-minim",
-    "orx-no-clear",
-    "orx-noise",
+  "orx-no-clear",
+  "orx-noise",
 //  "orx-obj-loader",
-    "orx-olive",
+  "orx-olive",
 //  "orx-osc",
 //  "orx-palette",
-    "orx-panel",
+  "orx-panel",
 //  "orx-parameters",
 //  "orx-poisson-fill",
 //  "orx-property-watchers",
@@ -60,20 +60,20 @@ val orxFeatures = setOf<String>(
 //  "orx-rabbit-control",
 //  "orx-realsense2",
 //  "orx-runway",
-    "orx-shade-styles",
+  "orx-shade-styles",
 //  "orx-shader-phrases",
-    "orx-shapes",
-    "orx-svg",
+  "orx-shapes",
+  "orx-svg",
 //  "orx-syphon",
 //  "orx-temporal-blur",
 //  "orx-tensorflow",
-    "orx-text-writer",
+  "orx-text-writer",
 //  "orx-time-operators",
 //  "orx-timer",
 //  "orx-triangulation",
 //  "orx-turtle",
-    "orx-video-profiles",
-    "orx-view-box",
+  "orx-video-profiles",
+  "orx-view-box",
 )
 
 /** ## additional ORML features to be added to this project */
@@ -91,7 +91,7 @@ val ormlFeatures = setOf<String>(
 
 /** ## additional OPENRNDR features to be added to this project */
 val openrndrFeatures = setOfNotNull(
-    if (DefaultNativePlatform("current").architecture.name != "arm-v8") "video" else null
+  if (DefaultNativePlatform("current").architecture.name != "arm-v8") "video" else null
 )
 
 /** ## configure the type of logging this project uses */
@@ -103,18 +103,18 @@ val applicationLogging = Logging.FULL
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    java
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.shadow)
-    alias(libs.plugins.runtime)
-    alias(libs.plugins.gitarchive.tomarkdown).apply(false)
-    alias(libs.plugins.versions)
-    alias(libs.plugins.kotlin.serialization)
+  java
+  alias(libs.plugins.kotlin.jvm)
+  alias(libs.plugins.shadow)
+  alias(libs.plugins.runtime)
+  alias(libs.plugins.gitarchive.tomarkdown).apply(false)
+  alias(libs.plugins.versions)
+  alias(libs.plugins.kotlin.serialization)
 }
 
 repositories {
-    mavenCentral()
-    mavenLocal()
+  mavenCentral()
+  mavenLocal()
 }
 
 dependencies {
@@ -122,7 +122,7 @@ dependencies {
 //    implementation(libs.jsoup)
 //    implementation(libs.csv)
 
-    /* ORSL dependencies */
+  /* ORSL dependencies */
 
 //    implementation(libs.orsl.shader.generator)
 //    implementation(libs.orsl.extension.color)
@@ -133,242 +133,245 @@ dependencies {
 //    implementation(libs.orsl.extension.raymarching)
 //    implementation(libs.orsl.extension.sdf)
 
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.serialization.core)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.slf4j.api)
-    implementation(libs.kotlin.logging)
 
-    when (applicationLogging) {
-        Logging.NONE -> runtimeOnly(libs.slf4j.nop)
-        Logging.SIMPLE -> runtimeOnly(libs.slf4j.simple)
-        Logging.FULL -> {
-            runtimeOnly(libs.log4j.slf4j2)
-            runtimeOnly(libs.log4j.core)
-            runtimeOnly(libs.jackson.databind)
-            runtimeOnly(libs.jackson.json)
-        }
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.serialization.core)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.slf4j.api)
+  implementation(libs.kotlin.logging)
+
+  implementation(libs.retrofit)
+
+  when (applicationLogging) {
+    Logging.NONE -> runtimeOnly(libs.slf4j.nop)
+    Logging.SIMPLE -> runtimeOnly(libs.slf4j.simple)
+    Logging.FULL -> {
+      runtimeOnly(libs.log4j.slf4j2)
+      runtimeOnly(libs.log4j.core)
+      runtimeOnly(libs.jackson.databind)
+      runtimeOnly(libs.jackson.json)
     }
-    implementation(kotlin("stdlib-jdk8"))
-    testImplementation(libs.junit)
+  }
+  implementation(kotlin("stdlib-jdk8"))
+  testImplementation(libs.junit)
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
 }
 kotlin {
-    compilerOptions {
-        languageVersion = KotlinVersion.KOTLIN_2_0
-        apiVersion = KotlinVersion.KOTLIN_2_0
-        jvmTarget = JvmTarget.JVM_17
-    }
+  compilerOptions {
+    languageVersion = KotlinVersion.KOTLIN_2_0
+    apiVersion = KotlinVersion.KOTLIN_2_0
+    jvmTarget = JvmTarget.JVM_17
+  }
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
 application {
-    mainClass = if (hasProperty("openrndr.application"))
-        "${property("openrndr.application")}"
-    else
-        applicationMainClass
+  mainClass = if (hasProperty("openrndr.application"))
+    "${property("openrndr.application")}"
+  else
+    applicationMainClass
 }
 
 tasks {
-    named<ShadowJar>("shadowJar") {
-        manifest {
-            attributes["Main-Class"] = applicationMainClass
-            attributes["Implementation-Version"] = project.version
-        }
-        minimize {
-            exclude(dependency("org.openrndr:openrndr-gl3:.*"))
-            exclude(dependency("org.jetbrains.kotlin:kotlin-reflect:.*"))
-            exclude(dependency("org.slf4j:slf4j-simple:.*"))
-            exclude(dependency("org.apache.logging.log4j:log4j-slf4j2-impl:.*"))
-            exclude(dependency("com.fasterxml.jackson.core:jackson-databind:.*"))
-            exclude(dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:.*"))
-            exclude(dependency("org.bytedeco:.*"))
-        }
+  named<ShadowJar>("shadowJar") {
+    manifest {
+      attributes["Main-Class"] = applicationMainClass
+      attributes["Implementation-Version"] = project.version
     }
+    minimize {
+      exclude(dependency("org.openrndr:openrndr-gl3:.*"))
+      exclude(dependency("org.jetbrains.kotlin:kotlin-reflect:.*"))
+      exclude(dependency("org.slf4j:slf4j-simple:.*"))
+      exclude(dependency("org.apache.logging.log4j:log4j-slf4j2-impl:.*"))
+      exclude(dependency("com.fasterxml.jackson.core:jackson-databind:.*"))
+      exclude(dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:.*"))
+      exclude(dependency("org.bytedeco:.*"))
+    }
+  }
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
 tasks {
-    named<org.beryx.runtime.JPackageTask>("jpackage") {
-        doLast {
-            val destPath = if (OperatingSystem.current().isMacOsX)
-                "build/jpackage/openrndr-application.app/Contents/Resources/data"
-            else
-                "build/jpackage/openrndr-application/data"
+  named<org.beryx.runtime.JPackageTask>("jpackage") {
+    doLast {
+      val destPath = if (OperatingSystem.current().isMacOsX)
+        "build/jpackage/openrndr-application.app/Contents/Resources/data"
+      else
+        "build/jpackage/openrndr-application/data"
 
-            copy {
-                from("data") { include("**/*") }
-                into(destPath)
-            }
-        }
+      copy {
+        from("data") { include("**/*") }
+        into(destPath)
+      }
     }
+  }
 
-    register<Zip>("jpackageZip") {
-        archiveFileName = "openrndr-application.zip"
-        from("${layout.buildDirectory.get()}/jpackage") {
-            include("**/*")
-        }
-        dependsOn("jpackage")
+  register<Zip>("jpackageZip") {
+    archiveFileName = "openrndr-application.zip"
+    from("${layout.buildDirectory.get()}/jpackage") {
+      include("**/*")
     }
+    dependsOn("jpackage")
+  }
 }
 
 runtime {
-    jpackage {
-        imageName = "openrndr-application"
-        skipInstaller = true
-        if (OperatingSystem.current().isMacOsX) {
-            jvmArgs.add("-XstartOnFirstThread")
-            jvmArgs.add("-Duser.dir=${"$"}APPDIR/../Resources")
-        }
+  jpackage {
+    imageName = "openrndr-application"
+    skipInstaller = true
+    if (OperatingSystem.current().isMacOsX) {
+      jvmArgs.add("-XstartOnFirstThread")
+      jvmArgs.add("-Duser.dir=${"$"}APPDIR/../Resources")
     }
-    options = listOf("--strip-debug", "--compress", "1", "--no-header-files", "--no-man-pages")
-    modules = listOf("jdk.unsupported", "java.management", "java.desktop")
+  }
+  options = listOf("--strip-debug", "--compress", "1", "--no-header-files", "--no-man-pages")
+  modules = listOf("jdk.unsupported", "java.management", "java.desktop")
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
 tasks {
-    register<org.openrndr.extra.gitarchiver.GitArchiveToMarkdown>("gitArchiveToMarkDown") {
-        historySize = 20
-    }
+  register<org.openrndr.extra.gitarchiver.GitArchiveToMarkdown>("gitArchiveToMarkDown") {
+    historySize = 20
+  }
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
 tasks {
-    dependencyUpdates {
-        gradleReleaseChannel = "current"
+  dependencyUpdates {
+    gradleReleaseChannel = "current"
 
-        val nonStableKeywords = listOf("alpha", "beta", "rc")
+    val nonStableKeywords = listOf("alpha", "beta", "rc")
 
-        fun isNonStable(version: String) = nonStableKeywords.any {
-            version.lowercase().contains(it)
-        }
-
-        rejectVersionIf {
-            isNonStable(candidate.version) && !isNonStable(currentVersion)
-        }
+    fun isNonStable(version: String) = nonStableKeywords.any {
+      version.lowercase().contains(it)
     }
+
+    rejectVersionIf {
+      isNonStable(candidate.version) && !isNonStable(currentVersion)
+    }
+  }
 }
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
 class Openrndr {
-    val openrndrVersion = libs.versions.openrndr.get()
-    val orxVersion = libs.versions.orx.get()
-    val ormlVersion = libs.versions.orml.get()
+  val openrndrVersion = libs.versions.openrndr.get()
+  val orxVersion = libs.versions.orx.get()
+  val ormlVersion = libs.versions.orml.get()
 
-    // choices are "orx-tensorflow-gpu", "orx-tensorflow"
-    val orxTensorflowBackend = "orx-tensorflow"
+  // choices are "orx-tensorflow-gpu", "orx-tensorflow"
+  val orxTensorflowBackend = "orx-tensorflow"
 
-    val currArch = DefaultNativePlatform("current").architecture.name
-    val currOs = OperatingSystem.current()
-    val os = if (project.hasProperty("targetPlatform")) {
-        val supportedPlatforms = setOf("windows", "macos", "linux-x64", "linux-arm64")
-        val platform: String = project.property("targetPlatform") as String
-        if (platform !in supportedPlatforms) {
-            throw IllegalArgumentException("target platform not supported: $platform")
-        } else {
-            platform
-        }
-    } else when {
-        currOs.isWindows -> "windows"
-        currOs.isMacOsX -> when (currArch) {
-            "aarch64", "arm-v8" -> "macos-arm64"
-            else -> "macos"
-        }
-
-        currOs.isLinux -> when (currArch) {
-            "x86-64" -> "linux-x64"
-            "aarch64" -> "linux-arm64"
-            else -> throw IllegalArgumentException("architecture not supported: $currArch")
-        }
-
-        else -> throw IllegalArgumentException("os not supported: ${currOs.name}")
+  val currArch = DefaultNativePlatform("current").architecture.name
+  val currOs = OperatingSystem.current()
+  val os = if (project.hasProperty("targetPlatform")) {
+    val supportedPlatforms = setOf("windows", "macos", "linux-x64", "linux-arm64")
+    val platform: String = project.property("targetPlatform") as String
+    if (platform !in supportedPlatforms) {
+      throw IllegalArgumentException("target platform not supported: $platform")
+    } else {
+      platform
+    }
+  } else when {
+    currOs.isWindows -> "windows"
+    currOs.isMacOsX -> when (currArch) {
+      "aarch64", "arm-v8" -> "macos-arm64"
+      else -> "macos"
     }
 
-    fun orx(module: String) = "org.openrndr.extra:$module:$orxVersion"
-    fun orml(module: String) = "org.openrndr.orml:$module:$ormlVersion"
-    fun openrndr(module: String) = "org.openrndr:openrndr-$module:$openrndrVersion"
-    fun openrndrNatives(module: String) = "org.openrndr:openrndr-$module-natives-$os:$openrndrVersion"
-    fun orxNatives(module: String) = "org.openrndr.extra:$module-natives-$os:$orxVersion"
-
-    init {
-        dependencies {
-            runtimeOnly(openrndr("gl3"))
-            runtimeOnly(openrndrNatives("gl3"))
-            implementation(openrndr("openal"))
-            runtimeOnly(openrndrNatives("openal"))
-            implementation(openrndr("application"))
-            implementation(openrndr("animatable"))
-            implementation(openrndr("extensions"))
-            implementation(openrndr("filter"))
-            implementation(openrndr("dialogs"))
-            if ("video" in openrndrFeatures) {
-                implementation(openrndr("ffmpeg"))
-                runtimeOnly(openrndrNatives("ffmpeg"))
-            }
-            for (feature in orxFeatures) {
-                implementation(orx(feature))
-            }
-            for (feature in ormlFeatures) {
-                implementation(orml(feature))
-            }
-            if ("orx-tensorflow" in orxFeatures) runtimeOnly("org.openrndr.extra:$orxTensorflowBackend-natives-$os:$orxVersion")
-            if ("orx-kinect-v1" in orxFeatures) runtimeOnly(orxNatives("orx-kinect-v1"))
-            if ("orx-olive" in orxFeatures) implementation(libs.kotlin.script.runtime)
-        }
+    currOs.isLinux -> when (currArch) {
+      "x86-64" -> "linux-x64"
+      "aarch64" -> "linux-arm64"
+      else -> throw IllegalArgumentException("architecture not supported: $currArch")
     }
+
+    else -> throw IllegalArgumentException("os not supported: ${currOs.name}")
+  }
+
+  fun orx(module: String) = "org.openrndr.extra:$module:$orxVersion"
+  fun orml(module: String) = "org.openrndr.orml:$module:$ormlVersion"
+  fun openrndr(module: String) = "org.openrndr:openrndr-$module:$openrndrVersion"
+  fun openrndrNatives(module: String) = "org.openrndr:openrndr-$module-natives-$os:$openrndrVersion"
+  fun orxNatives(module: String) = "org.openrndr.extra:$module-natives-$os:$orxVersion"
+
+  init {
+    dependencies {
+      runtimeOnly(openrndr("gl3"))
+      runtimeOnly(openrndrNatives("gl3"))
+      implementation(openrndr("openal"))
+      runtimeOnly(openrndrNatives("openal"))
+      implementation(openrndr("application"))
+      implementation(openrndr("animatable"))
+      implementation(openrndr("extensions"))
+      implementation(openrndr("filter"))
+      implementation(openrndr("dialogs"))
+      if ("video" in openrndrFeatures) {
+        implementation(openrndr("ffmpeg"))
+        runtimeOnly(openrndrNatives("ffmpeg"))
+      }
+      for (feature in orxFeatures) {
+        implementation(orx(feature))
+      }
+      for (feature in ormlFeatures) {
+        implementation(orml(feature))
+      }
+      if ("orx-tensorflow" in orxFeatures) runtimeOnly("org.openrndr.extra:$orxTensorflowBackend-natives-$os:$orxVersion")
+      if ("orx-kinect-v1" in orxFeatures) runtimeOnly(orxNatives("orx-kinect-v1"))
+      if ("orx-olive" in orxFeatures) implementation(libs.kotlin.script.runtime)
+    }
+  }
 }
 
 val openrndr = Openrndr()
 
 if (properties["openrndr.tasks"] == "true") {
-    tasks.register("create executable jar for $applicationMainClass") {
-        group = " \uD83E\uDD8C OPENRNDR"
-        dependsOn("shadowJar")
-    }
+  tasks.register("create executable jar for $applicationMainClass") {
+    group = " \uD83E\uDD8C OPENRNDR"
+    dependsOn("shadowJar")
+  }
 
-    tasks.register("run $applicationMainClass") {
-        group = " \uD83E\uDD8C OPENRNDR"
-        dependsOn("run")
-    }
+  tasks.register("run $applicationMainClass") {
+    group = " \uD83E\uDD8C OPENRNDR"
+    dependsOn("run")
+  }
 
-    tasks.register("create standalone executable for $applicationMainClass") {
-        group = " \uD83E\uDD8C OPENRNDR"
-        dependsOn("jpackageZip")
-    }
+  tasks.register("create standalone executable for $applicationMainClass") {
+    group = " \uD83E\uDD8C OPENRNDR"
+    dependsOn("jpackageZip")
+  }
 
-    tasks.register("add IDE file scopes") {
-        group = " \uD83E\uDD8C OPENRNDR"
-        val scopesFolder = File("${project.projectDir}/.idea/scopes")
-        scopesFolder.mkdirs()
+  tasks.register("add IDE file scopes") {
+    group = " \uD83E\uDD8C OPENRNDR"
+    val scopesFolder = File("${project.projectDir}/.idea/scopes")
+    scopesFolder.mkdirs()
 
-        val files = listOf(
-            "Code" to "file:*.kt||file:*.frag||file:*.vert||file:*.glsl",
-            "Text" to "file:*.txt||file:*.md||file:*.xml||file:*.json",
-            "Gradle" to "file[*buildSrc*]:*/||file:*gradle.*||file:*.gradle||file:*/gradle-wrapper.properties||file:*.toml",
-            "Media" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr||file:*.mp3||file:*.wav||file:*.mp4||file:*.mov||file:*.svg"
-        )
-        files.forEach { (name, pattern) ->
-            val file = File(scopesFolder, "__$name.xml")
-            if (!file.exists()) {
-                file.writeText(
-                    """
+    val files = listOf(
+      "Code" to "file:*.kt||file:*.frag||file:*.vert||file:*.glsl",
+      "Text" to "file:*.txt||file:*.md||file:*.xml||file:*.json",
+      "Gradle" to "file[*buildSrc*]:*/||file:*gradle.*||file:*.gradle||file:*/gradle-wrapper.properties||file:*.toml",
+      "Media" to "file:*.png||file:*.jpg||file:*.dds||file:*.exr||file:*.mp3||file:*.wav||file:*.mp4||file:*.mov||file:*.svg"
+    )
+    files.forEach { (name, pattern) ->
+      val file = File(scopesFolder, "__$name.xml")
+      if (!file.exists()) {
+        file.writeText(
+          """
                     <component name="DependencyValidationManager">
                       <scope name=" ★ $name" pattern="$pattern" />
                     </component>
                     """.trimIndent()
-                )
-            }
-        }
+        )
+      }
     }
+  }
 }

@@ -1,8 +1,8 @@
-rootProject.name = "openrndr-template"
+rootProject.name = "spotify-top-track-visualizer"
 
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-    }
+  repositories {
+    gradlePluginPortal()
+    mavenLocal()
+  }
 }
