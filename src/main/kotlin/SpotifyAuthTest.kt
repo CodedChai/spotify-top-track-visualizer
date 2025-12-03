@@ -14,8 +14,7 @@ suspend fun main() {
 
     logger.info { "Fetching your top tracks..." }
     val spotifyService = SpotifyService()
-    val topTrackResponse = spotifyService.handleTopTracks()
-    spotifyService.getAllTrackInfo(topTrackResponse)
+    spotifyService.handleTopTracks()
 
     logger.info { "=== Test Complete ===" }
 

@@ -11,4 +11,5 @@ data class TopTrackItemResponse(
   val id: String,
   val href: String,
   val artists: List<TopTrackSimplifiedArtistResponse>,
+  val album: TopTrackAlbumResponse,
 )
